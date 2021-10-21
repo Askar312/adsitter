@@ -87,10 +87,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'adsiter',
-        'USER': 'adsiter_user',
-        'PASSWORD': 'adsiter_pass',
-        'HOST': 'localhost',
-        'PORT': '',
+
+        'USER': 'davide',
+        'PASSWORD': 'jw8s0F4',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
