@@ -62,9 +62,6 @@ class Contacts(models.Model):
     def __str__(self):
         return f"{self.name}"
 
-    def get_absolute_url(self):
-        return reverse('contacts', kwargs={'pk':self.pk})
-
 
 class Post(models.Model):
     user = models.ForeignKey(
