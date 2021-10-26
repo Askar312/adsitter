@@ -3,20 +3,29 @@ from .serializers import PostSerializers
 from rest_framework import generics
 from .models import Post
 from .forms import *
-
+from django.shortcuts import render
+from .serializers import PostSerializers, PostDetailSerializer
+from rest_framework import generics
+from .models import Post
+from .permissions import IsOwnerOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 class PostListView(generics.ListAPIView):
     serializer_class = PostSerializers
     queryset = Post.objects.all()
+    permission_classes = (IsAuthenticated, IsAdminUser)
 
 class PostCreateView(generics.CreateAPIView):
     serializer_class = PostSerializers
 
+
 class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializers
     queryset = Post.objects.all()
+    permission_classes = (IsOwnerOrReadOnly)
 
-
+def oauth(request):
+    return render(request, 'index.html')
 
 
 def index(request):

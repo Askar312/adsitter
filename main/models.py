@@ -75,7 +75,7 @@ class Post(models.Model):
         verbose_name='Категория'
     )
     title = models.CharField(
-        max_length=250,
+        max_length=255,
         verbose_name='Название поста',
         db_index=True
     )
