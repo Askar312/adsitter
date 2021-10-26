@@ -4,4 +4,11 @@ from .models import Post
 class PostSerializers(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = 'all'
+
+
+class PostDetailSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault)
+    class Meta:
+        model = Post
+        fields = 'all'
