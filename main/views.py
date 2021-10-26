@@ -1,8 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .serializers import PostSerializers
 from rest_framework import generics
 from .models import Post
-# Create your views here.
+from .forms import *
+
+
+class PostListView(generics.ListAPIView):
+    serializer_class = PostSerializers
+    queryset = Post.objects.all()
+
+class PostCreateView(generics.CreateAPIView):
+    serializer_class = PostSerializers
+
+class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = PostSerializers
+    queryset = Post.objects.all()
+
+
+
 
 def index(request):
     return render(
@@ -29,19 +44,15 @@ def clients(request):
     )
 
 def contact(request):
+    if request.method == 'POST':
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid():
+            new = contact_form.save()
+            return redirect('/')
+    else:
+        form = ContactForm()
     return render(
         request,
-        template_name='main/contact.html'
+        'main/contact.html',
+        {'form': form}
     )
-
-
-class PostListView(generics.ListAPIView):
-    serializer_class = PostSerializers
-    queryset = Post.objects.all()
-
-class PostCreateView(generics.CreateAPIView):
-    serializer_class = PostSerializers
-
-class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = PostSerializers
-    queryset = Post.objects.all()
