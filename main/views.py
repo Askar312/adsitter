@@ -1,8 +1,4 @@
-from django.contrib import messages
 from django.shortcuts import render, redirect
-from .serializers import PostSerializers
-from rest_framework import generics
-from .models import Post
 from .forms import *
 from django.shortcuts import render
 from .serializers import PostSerializers, PostDetailSerializer
@@ -60,19 +56,18 @@ def user_logout(request):
     return redirect('login')
 
 
-class PostListView(generics.ListAPIView):
-    serializer_class = PostSerializers
-    queryset = Post.objects.all()
-    permission_classes = (IsAuthenticated, IsAdminUser)
-
 class PostCreateView(generics.CreateAPIView):
     serializer_class = PostSerializers
 
-
-class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
+class PostListView(generics.ListAPIView):
     serializer_class = PostSerializers
     queryset = Post.objects.all()
-    permission_classes = (IsOwnerOrReadOnly)
+    permission_classes = (IsAdminUser,)
+
+class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = PostDetailSerializer
+    queryset = Post.objects.all()
+    permission_classes = (IsOwnerOrReadOnly, )
 
 def oauth(request):
     return render(request, 'index.html')
