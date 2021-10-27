@@ -19,6 +19,9 @@ from .yasg import urlpatterns_yasg
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/base-auth/', include('rest_framework.urls')),
+    path('api/v1/auth_token/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls')),
     path('', include('main.urls'))
 ]
 

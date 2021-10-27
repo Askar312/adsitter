@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'main.apps.MainConfig',
     'rest_framework',
-    'social_django',
     'djoser',
+    'social_django',
     'rest_framework.authtoken',
 ]
 
