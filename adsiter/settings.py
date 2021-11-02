@@ -91,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'adsiter',
         'USER': 'davide',
-        'PASSWORD': 'jw8s0F4',
+        'PASSWORD': 'jw8sF4',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -148,6 +148,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 
 
 REST_FRAMEWORK = {
