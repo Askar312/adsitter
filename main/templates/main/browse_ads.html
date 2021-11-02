@@ -7,13 +7,22 @@
 			<h1 class="promoted_text">PROMOTED <span style="border-bottom: 5px solid #4bc714;">ADS</span></h1>
 			<div class="images_main">
 				<div class="row">
+
+					{% for post in posts %}
+
 					<div class="col-sm-6 col-md-6 col-lg-3">
-						<div class="images"><img src="{% static 'images/img-1.png' %}" style="width: 100%;"></div>
-						<button class="promoted_bt">PROMOTED</button>
+						{% if post.image %}
+						<div class="images"><img src="{{ post.image.url }}" style="width: 100%;"></div>
+						{% else %}
+						<div class="images"><img src="https://picsum.photos/id/237/200/300" style="width: 100%;"></div>
+						{% endif %}
+						<button class="promoted_bt">{{ post.title }}</button>
 						<div class="eye-icon"><img src="{% static 'images/eye-icon.png' %}"><span class="like-icon"><img src="{% static 'images/like-icon.png' %}"></span></div>
-						<div class="numbar_text">30<span class="like-icon">01</span></div>
+						<div class="numbar_text">{{ post.views }}<span class="like-icon">{{ post.likes }}</span></div>
 						<button class="mobile_bt"><a href="#">Mobiles</a></button>
 					</div>
+
+					{% endfor %}
 				</div>
 			</div>
 		</div>

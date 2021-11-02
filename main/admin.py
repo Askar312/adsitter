@@ -13,6 +13,7 @@ class ContactsAdmin(admin.ModelAdmin):
                     )
 
     list_filter = ('name',)
+    save_on_top = True
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -32,14 +33,18 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('user',
                    'title',)
 
+    save_on_top = True
+
 
 class SubscribeAdmin(admin.ModelAdmin):
     list_display = ('email',)
+    save_on_top = True
 
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title',
                     'slug',)
+    save_on_top = True
 
 
 admin.site.register(Contacts, ContactsAdmin)

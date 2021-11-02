@@ -17,12 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from .yasg import urlpatterns_yasg
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/base-auth/', include('rest_framework.urls')),
     path('api/v1/auth_token/', include('djoser.urls.authtoken')),
     path('auth/', include('djoser.urls')),
     path('', include('main.urls'))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += urlpatterns_yasg

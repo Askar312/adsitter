@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 
 
 @login_required
@@ -85,11 +86,27 @@ def about(request):
         template_name='main/about.html'
     )
 
-def browse_ads(request):
-    return render(
-        request,
-        template_name='main/browse_ads.html'
-    )
+
+
+
+
+
+
+
+
+class BrowseAds(ListView):
+    model = Post
+    template_name = 'main/browse_ads.html'
+    context_object_name = 'posts'
+
+
+
+
+# def browse_ads(request):
+#     return render(
+#         request,
+#         template_name='main/browse_ads.html'
+#     )
 
 def clients(request):
     return render(
