@@ -17,26 +17,6 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
-@login_required
-def dashboard(request):
-    return render(request, template_name='main/dashboard.html', context={'section': 'dashboard'})
-
-
-
-
-
-def register(request):
-    if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            new_user = user_form.save(commit=False)
-            new_user.set_password(user_form.cleaned_data['password'])
-            new_user.save()
-            return render(request, template_name='main/register.html', context={'new_user': new_user})
-    else:
-        user_form = UserRegistrationForm()
-    return render(request, template_name='main/register.html', context={'user_form': user_form})
-
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -70,16 +50,6 @@ def user_login(request):
         form = LoginForm()
     return render(request, template_name='main/login.html', context={'form': form})
 
-
-
-                    return redirect('/')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid login')
-    else:
-        form = LoginForm()
-    return render(request, 'main/login.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':

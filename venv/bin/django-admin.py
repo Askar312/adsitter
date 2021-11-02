@@ -1,4 +1,4 @@
-#!/home/tenthent/ProjectsInClass/adsitter/venv/bin/python3
+#!/home/askar/eeeee/adsitter/venv/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
