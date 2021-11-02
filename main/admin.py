@@ -45,4 +45,6 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Contacts, ContactsAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Subscribe, SubscribeAdmin)
+
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Category, CategoryAdmin)

@@ -1,4 +1,11 @@
 from django.shortcuts import render, redirect
+
+from django.http import HttpResponse
+
+from .serializers import PostSerializers
+from rest_framework import generics, authentication
+from .models import Post
+
 from .forms import *
 from django.shortcuts import render
 from .serializers import PostSerializers, PostDetailSerializer
@@ -6,6 +13,30 @@ from rest_framework import generics
 from .models import Post
 from .permissions import IsOwnerOrReadOnly
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def dashboard(request):
+    return render(request, template_name='main/dashboard.html', context={'section': 'dashboard'})
+
+
+
+
+
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return render(request, template_name='main/register.html', context={'new_user': new_user})
+    else:
+        user_form = UserRegistrationForm()
+    return render(request, template_name='main/register.html', context={'user_form': user_form})
+
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -14,6 +45,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def dashboard(request):
     return render(request,'main/dashboard.html',{'section': 'dashboard'})
+
 
 
 def user_login(request):
@@ -27,6 +59,18 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
+
+                    return HttpResponse('Successful')
+                else:
+                    return HttpResponse('Ooops!')
+            else:
+                return HttpResponse('Register')
+    else:
+        form = LoginForm()
+    return render(request, template_name='main/login.html', context={'form': form})
+
+
+
                     return redirect('/')
                 else:
                     return HttpResponse('Disabled account')
@@ -54,6 +98,7 @@ def register(request):
 def user_logout(request):
     logout(request)
     return redirect('login')
+
 
 
 class PostCreateView(generics.CreateAPIView):

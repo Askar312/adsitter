@@ -165,11 +165,50 @@ class Category(models.Model):
 
 
 
+class ClientsReview(models.Model):
+
+    name = models.CharField(
+        max_length=255,
+        verbose_name='Имя клиента'
+    )
+
+    image = models.ImageField(
+        upload_to='images/%Y/%m/%d',
+        verbose_name='Фото'
+    )
+
+    review = models.TextField(
+        verbose_name='Отзыв'
+    )
+
+    create_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата создания отзыва'
+    )
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.DO_NOTHING,
+        verbose_name='Пользователь'
+    )
 
 
+    slug = models.SlugField(
+        max_length=255,
+        verbose_name='Url',
+        unique=True
+    )
 
+    class Meta:
+        verbose_name = 'Клиент'
+        verbose_name_plural = 'Клиенты'
+        ordering = ['-create_at']
 
+    def __str__(self):
+        return f"{self.review}"
 
+    def get_absolute_url(self):
+        return reverse('clientreview', kwargs={'pk':self.pk})
 
 
 

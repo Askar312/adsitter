@@ -8,6 +8,17 @@
                   integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
                   crossorigin="anonymous">
 
+            <form method="post"  action="{% url 'home' %}">
+                {% csrf_token %}
+                {{ user_form.as_table }}
+                <div class="row form-group mt-4">
+                    <div class="col-md-12">
+                        <input type="submit" value="Создать пользователя" class="submit_bt">
+                    </div>
+                </div>
+            </form>
+
+
 
             <h1>Создать аккаунт</h1>
             <p>Пожалуйста заполните форму</p>
@@ -16,6 +27,7 @@
                 {% csrf_token %}
                 <p><input type="submit" value="Создать аккаунт"></p>
             </form>
+
 
 
         </div>
