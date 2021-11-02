@@ -1,0 +1,4 @@
+__pycash__/
+*.pyc
+venv
+.idea

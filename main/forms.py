@@ -3,8 +3,8 @@ from .models import *
 from django.contrib.auth.models import User
 
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={"class": "form-control"}))
+    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput(attrs={"class": "form-control"}))
     class Meta:
         model = User
         fields = ('username', 'first_name', 'email')
@@ -16,8 +16,8 @@ class UserRegistrationForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control"}))
 
 
 
@@ -26,7 +26,7 @@ class ContactForm(forms.ModelForm):
         model = Contacts
         fields = ['name', 'email', 'phone', 'message']
         widgets = {
-            'name' : forms.TextInput(attrs={'class':'email-bt', 'placeholder':'Name'}),
+            'name' : forms.TextInput(attrs={'class':'email-bt', 'placeholder':'Name', "class": "form-control"}),
             'email': forms.EmailInput(attrs={'class': 'email-bt', 'placeholder':'Email'}),
             'phone' : forms.TextInput(attrs={'class':'email-bt', 'placeholder':'Phone'}),
             'message' : forms.Textarea(attrs={'class':'massage-bt', 'placeholder':'Massage', 'rows':'5'}),
