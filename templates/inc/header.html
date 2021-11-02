@@ -1,26 +1,29 @@
 {% load static %}
 
-	<!-- header section start -->
-	<div class="header_section">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 col-lg-3">
-					<div class="logo"><a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"></a></div>
-				</div>
-				<div class="col-sm-6">
-					<nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+<!-- header section start -->
+<div class="header_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-3">
+                <div class="logo"><a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"></a></div>
+            </div>
+            <div class="col-sm-6">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                            aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
-                        </button>
+                    </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                           <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
-                           <a class="nav-item nav-link" href="{% url 'browse_ads' %}">Browse ads</a>
-                           <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
-                           <a class="nav-item nav-link" href="{% url 'clients' %}">Clients</a>
-                           <a class="nav-item nav-link" href="{% url 'contact' %}">Contact</a>
+                            <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
+                            <a class="nav-item nav-link" href="{% url 'browse_ads' %}">Browse ads</a>
+                            <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
+                            <a class="nav-item nav-link" href="{% url 'clients' %}">Clients</a>
+                            <a class="nav-item nav-link" href="{% url 'contact' %}">Contact</a>
                         </div>
                     </div>
+
                     </nav>
 				</div>
 				<div class="col-sm-6 col-lg-3">
@@ -43,3 +46,26 @@
 		</div>
 	</div>
 	<!-- header section end -->
+
+                </nav>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="search_main">
+                   <span class="user">
+                       {% if request.user.is_authenticated %}
+                            <h3>Добро пожаловать, <b>{{ request.user.username }}</b></h3>
+                            <a href="{% url 'logout' %}"><button class="read_bt" style="width: 67%">Выйти</button></a>
+                       {% else %}
+                            <a href="{% url 'login' %}"><button class="read_bt">Войти</button></a>
+                       <a href="{% url 'register' %}"><button class="read_bt">Регистрация</button></a>
+                       {% endif %}
+</span>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- header section end -->
+
