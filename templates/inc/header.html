@@ -23,30 +23,6 @@
                             <a class="nav-item nav-link" href="{% url 'contact' %}">Contact</a>
                         </div>
                     </div>
-
-                    </nav>
-				</div>
-				<div class="col-sm-6 col-lg-3">
-					<div class="search_main">
-						{% if request.user.is_authenticated %}
-						<li {% if section.dashboard %} class="selected" {% endif %}></li>
-						{% include 'dashboard.html' %}
-                    <button class="submit_bt"><a href="{% url 'register' %}"></span>Sing up</a></button>
-					<button class="submit_bt"><a href="{% url 'login' %}"></span>Sing in</a></button>
-						{% endif %}
-						{% if request.user.is_authenticated %}
-						Hi, {{ request.user.username }}, <a href="{% url 'logout' %}"></a>
-						{% else %}
-						<a href="{% url 'login' %}"></a>
-						{% endif %}
-				    </div>
-				</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- header section end -->
-
                 </nav>
             </div>
             <div class="col-sm-6 col-lg-3">
@@ -54,10 +30,10 @@
                    <span class="user">
                        {% if request.user.is_authenticated %}
                             <h3>Добро пожаловать, <b>{{ request.user.username }}</b></h3>
-                            <a href="{% url 'logout' %}"><button class="read_bt" style="width: 67%">Выйти</button></a>
+                            <a href="{% url 'logout' %}"><button class="read_bt form-control" style="background: #00FF00">Выйти</button></a>
                        {% else %}
-                            <a href="{% url 'login' %}"><button class="read_bt">Войти</button></a>
-                       <a href="{% url 'register' %}"><button class="read_bt">Регистрация</button></a>
+                            <a href="{% url 'login' %}"><button class="form-control" style="background: #00FF00">Войти</button></a>
+                       <a href="{% url 'register' %}"><button class="form-control" style="background: #00FF00">Регистрация</button></a>
                        {% endif %}
 </span>
 
@@ -68,4 +44,3 @@
     </div>
 </div>
 <!-- header section end -->
-
