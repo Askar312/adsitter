@@ -4,14 +4,19 @@
 {% if form.errors %}
 <p>Ваше имя пользователя и пароль не совпадают. Повторите попытку.</p>
 {% else %}
-<p>Пожалуйста, используйте следующую форму для входа в систему. Если у вас нет учетной записи <a href="{% url 'register' %}">Зарегистрироваться</a></p>
+<div class="container">
+    <p>Пожалуйста, используйте следующую форму для входа в систему. Если у вас нет учетной записи <a href="{% url 'register' %}">Зарегистрироваться</a></p>
+</div>
 {% endif %}
-<div class="login-form">
+<div class="container">
+    <div class="login-form">
     <form action="{% url 'login' %}" method="post">
         {{ form.as_p }}
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}"/>
-        <p><input type="submit" value="Войти"></p>
+        <p><input class="submit_bt" type="submit" value="Войти"></p>
     </form>
 </div>
-{% endblock %}
+</div>
+
+{% endblock %} 

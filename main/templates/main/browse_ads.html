@@ -1,31 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-	<!-- section PROMOTED start -->
-	<div class=" layout_padding promoted_sectipon">
-		<div class="container">
-			<h1 class="promoted_text">PROMOTED <span style="border-bottom: 5px solid #4bc714;">ADS</span></h1>
-			<div class="images_main">
-				<div class="row">
+<!-- section PROMOTED start -->
+<div class=" layout_padding promoted_sectipon">
+    <div class="container">
+        <h1 class="promoted_text">PROMOTED <span style="border-bottom: 5px solid #4bc714;">ADS</span></h1>
+        <div class="images_main">
+            <div class="row">
 
-					{% for post in posts %}
+                {% for post in posts %}
 
-					<div class="col-sm-6 col-md-6 col-lg-3">
-						{% if post.image %}
-						<div class="images"><img src="{{ post.image.url }}" style="width: 100%;"></div>
-						{% else %}
-						<div class="images"><img src="https://picsum.photos/id/237/200/300" style="width: 100%;"></div>
-						{% endif %}
-						<button class="promoted_bt">{{ post.title }}</button>
-						<div class="eye-icon"><img src="{% static 'images/eye-icon.png' %}"><span class="like-icon"><img src="{% static 'images/like-icon.png' %}"></span></div>
-						<div class="numbar_text">{{ post.views }}<span class="like-icon">{{ post.likes }}</span></div>
-						<button class="mobile_bt"><a href="#">Mobiles</a></button>
-					</div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    {% if post.image %}
+                    <div class="images"><img src="{{ post.image.url }}" style="width: 100%;"></div>
+                    {% else %}
+                    <div class="images"><img src="https://picsum.photos/id/237/200/300" style="width: 100%;"></div>
+                    {% endif %}
+                    <button class="promoted_bt">{{ post.title }}</button>
+                    <div class="eye-icon"><img src="{% static 'images/eye-icon.png' %}"><span class="like-icon"><img
+                            src="{% static 'images/like-icon.png' %}"></span></div>
+                    <div class="numbar_text">{{ post.views }}<span class="like-icon">{{ post.likes }}</span></div>
+                    <button class="mobile_bt"><a href="#">Mobiles</a></button>
+                    <br>
+                    <br>
+                    <br>
+                </div>
 
-					{% endfor %}
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- section PROMOTED end -->
-	{% endblock %}
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- section PROMOTED end -->
+{% endblock %}

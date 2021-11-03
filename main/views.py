@@ -1,11 +1,4 @@
 from django.shortcuts import render, redirect
-
-from django.http import HttpResponse
-
-from .serializers import PostSerializers
-from rest_framework import generics, authentication
-from .models import Post
-
 from .forms import *
 from django.shortcuts import render
 from .serializers import PostSerializers, PostDetailSerializer
@@ -13,21 +6,26 @@ from rest_framework import generics
 from .models import Post
 from .permissions import IsOwnerOrReadOnly
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+<<<<<<< HEAD
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
+=======
+>>>>>>> 0933f8d30843d2eaed6a21abfd8f5f09790a751d
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 @login_required
 def dashboard(request):
     return render(request,'main/dashboard.html',{'section': 'dashboard'})
-
-
 
 def user_login(request):
     if request.method == 'POST':
@@ -40,6 +38,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
+<<<<<<< HEAD
 
                     return HttpResponse('Successful')
                 else:
@@ -50,6 +49,16 @@ def user_login(request):
         form = LoginForm()
     return render(request, template_name='main/login.html', context={'form': form})
 
+=======
+                    return redirect('/')
+                else:
+                    return HttpResponse('Disabled account')
+            else:
+                return HttpResponse('Invalid login')
+    else:
+        form = LoginForm()
+    return render(request, 'main/login.html', {'form': form})
+>>>>>>> 0933f8d30843d2eaed6a21abfd8f5f09790a751d
 
 def register(request):
     if request.method == 'POST':
@@ -69,7 +78,6 @@ def register(request):
 def user_logout(request):
     logout(request)
     return redirect('login')
-
 
 
 class PostCreateView(generics.CreateAPIView):
@@ -102,26 +110,14 @@ def about(request):
     )
 
 
-
-
-
-
-
-
-
 class BrowseAds(ListView):
     model = Post
     template_name = 'main/browse_ads.html'
     context_object_name = 'posts'
 
+# class Clients(ListView):
+#     template_name = 'main/clients.html'
 
-
-
-# def browse_ads(request):
-#     return render(
-#         request,
-#         template_name='main/browse_ads.html'
-#     )
 
 def clients(request):
     return render(

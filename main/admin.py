@@ -50,4 +50,10 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Contacts, ContactsAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Subscribe, SubscribeAdmin)
+<<<<<<< HEAD
 admin.site.register(Category, CategoryAdmin)
+=======
+
+admin.site.register(Category, CategoryAdmin)
+
+>>>>>>> 0933f8d30843d2eaed6a21abfd8f5f09790a751d
