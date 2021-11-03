@@ -13,37 +13,20 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="row">
+
           <div class="col-sm-12">
             <h1 class="promoted_text">CLIENTS <span style="border-bottom: 5px solid #4bc714;">REVIEW</span></h1>
-            <div class="client_img"><img src="{% static 'images/client-img.png' %}"></div>
-            <h1 class="client_text">JHON DUE</h1>
-            <p class="adiser_text">(adiser)</p>
-            <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to</p>
+            {% for client in clients %}
+            <div class="client_img"><img src="{{ client.image.url }}" width="300"></div>
+            <h1 class="client_text">{{ client.name }}</h1>
+            <p class="adiser_text">{{ client.create_at }}</p>
+            <p class="long_text">{{ client.review }}</p>
+            {% endfor %}
           </div>
+
         </div>
     </div>
-    <div class="carousel-item">
-      <div class="row">
-          <div class="col-sm-12">
-            <h1 class="promoted_text">CLIENTS <span style="border-bottom: 5px solid #4bc714;">REVIEW</span></h1>
-            <div class="client_img"><img src="{% static 'images/client-img.png' %}"></div>
-            <h1 class="client_text">JHON DUE</h1>
-            <p class="adiser_text">(adiser)</p>
-            <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to</p>
-          </div>
-        </div>
-    </div>
-    <div class="carousel-item">
-      <div class="row">
-          <div class="col-sm-12">
-            <h1 class="promoted_text">CLIENTS <span style="border-bottom: 5px solid #4bc714;">REVIEW</span></h1>
-            <div class="client_img"><img src="{% static 'images/client-img.png' %}"></div>
-            <h1 class="client_text">JHON DUE</h1>
-            <p class="adiser_text">(adiser)</p>
-            <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to</p>
-          </div>
-        </div>
-        </div>
+
     </div>
     </div>
     </div>

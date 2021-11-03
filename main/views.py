@@ -83,6 +83,7 @@ def index(request):
         template_name='main/index.html'
     )
 
+
 def about(request):
     return render(
         request,
@@ -95,14 +96,27 @@ class BrowseAds(ListView):
     template_name = 'main/browse_ads.html'
     context_object_name = 'posts'
 
-# class Clients(ListView):
-#     template_name = 'main/clients.html'
+class Clients(ListView):
+    model = ClientsReview
+    template_name = 'main/clients.html'
+    context_object_name = 'clients'
 
+    def get_queryset(self):
+        clients = ClientsReview.objects.all()
+        return clients
 
-def clients(request):
+def clients_review(request):
+    if request.method == "POST":
+        review_form = ClientReviewForm(request.POST)
+        if review_form.is_valid():
+            new = review_form.save()
+            return redirect('/')
+    else:
+        review_form = ClientReviewForm()
     return render(
         request,
-        template_name='main/clients.html'
+        'main/review.html',
+        {'review_form':review_form}
     )
 
 def contact(request):

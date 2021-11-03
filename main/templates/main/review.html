@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <form action="#" method="post">
+        {{ review_form.as_p }}
+        {% csrf_token %}
+        <p><input class="submit_bt" type="submit" value="Оставить отзыв"></p>
+    </form>
+</div>
+
+{% endblock %} 

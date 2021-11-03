@@ -166,7 +166,6 @@ class Category(models.Model):
 
 
 class ClientsReview(models.Model):
-
     name = models.CharField(
         max_length=255,
         verbose_name='Имя клиента'
@@ -174,7 +173,7 @@ class ClientsReview(models.Model):
 
     image = models.ImageField(
         upload_to='images/%Y/%m/%d',
-        verbose_name='Фото'
+        verbose_name='Фото',
     )
 
     review = models.TextField(
@@ -189,14 +188,14 @@ class ClientsReview(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.DO_NOTHING,
-        verbose_name='Пользователь'
+        verbose_name='Пользователь',
     )
 
 
     slug = models.SlugField(
         max_length=255,
         verbose_name='Url',
-        unique=True
+        unique=True,
     )
 
     class Meta:
